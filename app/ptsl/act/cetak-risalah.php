@@ -57,6 +57,31 @@ $tanggal_pbb= tgl_indo($tanggal_pbb);
 $ttahun_peristiwa = date('Y', strtotime($tanggal_peristiwa));
 
 $document = file_get_contents("../format/risalah.rtf");
+
+$id_format = null;
+$query = "SELECT id_format FROM berkas_ptsl WHERE id=?";
+$sql = $koneksi->prepare($query);
+$sql->bind_param("i", $id);
+$sql->execute();
+$data = $sql->get_result();
+while ($row = $data->fetch_assoc()) {
+  $id_format = $row['id_format'];
+}
+
+if ($id_format) {
+  $query = "SELECT risalah AS file FROM format_ptsl WHERE id=?";
+  $sql = $koneksi->prepare($query);
+  $sql->bind_param("i", $id_format);
+  $sql->execute();
+  $data = $sql->get_result();
+  while ($row = $data->fetch_assoc()) {
+    $namafile2 = $row['file'];
+  }
+  if ($namafile2) {
+      $document = file_get_contents("../format/$namafile2");    
+  }
+}
+
 // isi dokumen dinyatakan dalam bentuk string
 $document = str_replace("#nomor_berkas", $nomor_berkas, $document);
 $document = str_replace("#tahun", $tahun, $document);

@@ -61,7 +61,7 @@ while ($row = $data->fetch_assoc()) {
 								<h4>Cetak</h4>
 							</div>
 							<ul class="category-list">
-								<li><a style="color: royalblue;" href="act/cetak.php?id=<?php echo($_GET['id']) ?>">Cetak Risalah
+								<li><a style="color: royalblue;" href="act/cetak-risalah.php?id=<?php echo($_GET['id']) ?>">Cetak Risalah
 									<i class="fa fa-paper-plane-o"></i>
 									<i class="fa fa-sticky-note-o"></i>
 									<i class="fa fa-sticky-note"></i>
