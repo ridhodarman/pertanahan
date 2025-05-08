@@ -88,6 +88,39 @@
                 </div>
               </div>
               <div class="row">
+                <div class="col-md-6 form-group">
+                  <label>SK/Format:</label>
+                  <select class="form-control" name="id_format">
+                    <?php
+                      $akun_id = $_SESSION['user_id'];
+                      $query = "SELECT id, no_sk, tanggal_sk 
+                                FROM format_pertek 
+                                WHERE akun_id = ?
+                                ORDER BY tanggal_sk DESC";
+                      $sql = $koneksi->prepare($query);
+                      $sql->bind_param("i", $akun_id);
+                      $sql->execute();
+                      $data = $sql->get_result();
+                      if ($data->num_rows > 0) {
+                        while ($row = $data->fetch_assoc()) {
+                          $id = $row['id'];
+                          $no_sk = $row['no_sk'];
+                          $tanggal_sk = $row['tanggal_sk'];
+                          if ($tanggal_sk==true && $tanggal_sk!="0000-00-00"){
+                            $timestamp = strtotime($tanggal_sk);
+                            $tanggal_sk = $new_date = date('d-m-Y', $timestamp);
+                          }
+                      ?>
+                        <option value="<?php echo $id; ?>"><?php echo $no_sk; ?> tanggal <?php echo $tanggal_sk; ?></option>
+                        <?php }
+                      } else { ?>
+                        <option value="null">Format tidak ada</option>
+                      <?php } ?>
+                    ?>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
                 <div style="padding-top: 15px;"></div>
                 <!-- <div style="padding-top: 5px;"></div> -->
                 <button name="baru" type="submit" class="btn btn-secondary btn-lg btn-block btn-sm">

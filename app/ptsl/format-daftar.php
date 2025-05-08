@@ -27,6 +27,17 @@
     });
     ';
   }
+
+  if (isset($_GET['warning'])) {
+    $pesan = $_GET['warning'];
+    echo '
+    Swal.fire({
+      title: "Success",
+      text: "' . $pesan . '",
+      icon: "warning"
+    });
+    ';
+  }
   ?>
 </script>
 

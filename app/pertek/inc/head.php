@@ -46,4 +46,5 @@ session_start();
 if (!$_SESSION['user_id']) {
 	header("Location: ../../403");
 }
+require_once('inc/koneksi.php');
 ?>

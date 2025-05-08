@@ -26,7 +26,7 @@
   <main id="main">
     <?php
     //include 'inc/koneksi.php';
-    require_once('inc/koneksi.php');
+//    require_once('inc/koneksi.php');
     $id = stripslashes(strip_tags(htmlspecialchars(base64_decode($_GET['berkas']), ENT_QUOTES)));
 
     $query = "SELECT * FROM berkas_pertek WHERE id=?";
@@ -278,9 +278,7 @@
                         <option value="<?php echo $id; ?>"><?php echo $no_sk; ?> tanggal <?php echo $tanggal_sk; ?></option>
                         <?php }
                       } else { ?>
-                        <tr>
                         <option value="null">Format tidak ada</option>
-                        </tr>
                       <?php } ?>
                     ?>
                   </select>

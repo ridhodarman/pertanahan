@@ -42,7 +42,6 @@
   </script>
 
 <?php
-  include 'inc/koneksi.php';
   $id = stripslashes(strip_tags(htmlspecialchars(base64_decode($_GET['format']), ENT_QUOTES)));
 
   $query = "SELECT * FROM format_ptsl WHERE id=?";

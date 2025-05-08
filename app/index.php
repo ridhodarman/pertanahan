@@ -44,8 +44,8 @@ if (!$_SESSION['user_id']) {
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">AGAM</h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">lorem ipsum dolor sit amet consectetur adipiscing elit</h2>
+                        <h1 class="mx-auto my-0 text-uppercase">Welcome</h1>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5">silahkan pilih salah satu menu di bawah ini</h2>
                         <a class="btn btn-primary" href="pertek" target="_blank">Pertimbangan Teknis</a>
                         <a class="btn btn-primary" target="_blank" href="ptsl">Pendaftaran Tanah</a>
                         <a class="btn btn-primary" href="#about">ZNT</a>

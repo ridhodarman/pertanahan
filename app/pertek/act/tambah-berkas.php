@@ -14,13 +14,15 @@ if (isset($_POST['baru'])) {
 		$bertindak_atas_nama = $_POST['bertindak_atas_nama'];
 		$nagari = $_POST['nagari'];
 		$kecamatan = $_POST['kecamatan'];
+		$id_format = $_POST['id_format'];
+		$akun_id = $_SESSION['user_id'];
 		 
 		// menginput data ke database
 		// mysqli_query($koneksi,"insert into berkas (no_berkas, tahun, jenis_pertek, nama_pemohon, nik, alamat, bertindak_atas_nama, desa_nagari, kecamatan, tanggal_rapat_persiapan, jam_rapat_persiapan) values ($no_berkas, $tahun, '$jenis_pertek', '$nama_pemohon', '$nik', '$alamat', '$bertindak_atas_nama', '$nagari', '$kecamatan', '$tanggal_rapat_persiapan', '$jam_rapat_persiapan')");
 
-		$query = "insert into berkas_pertek (no_berkas, tahun, jenis_pertek, nama_pemohon, nik, alamat, bertindak_atas_nama, desa_nagari, kecamatan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		$query = "insert into berkas_pertek (no_berkas, tahun, jenis_pertek, nama_pemohon, nik, alamat, bertindak_atas_nama, desa_nagari, kecamatan, id_format, akun_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		$sql = $koneksi->prepare($query);
-		$sql->bind_param("sssssssss", $no_berkas, $tahun, $jenis_pertek, $nama_pemohon, $nik, $alamat, $bertindak_atas_nama, $nagari, $kecamatan);
+		$sql->bind_param("ssssssssss", $no_berkas, $tahun, $jenis_pertek, $nama_pemohon, $nik, $alamat, $bertindak_atas_nama, $nagari, $kecamatan, $id_format, $akun_id);
 
 		if ($sql->execute()) {
 	    	//echo "<script>alert('Data Berhasil Disimpan');location='index.php';</script>";

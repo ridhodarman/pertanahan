@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Login 10</title>
+  	<title>Bukan KKP</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -16,8 +16,9 @@
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Login #10</h2>
+				<div class="col-md-6 text-center mb-0">
+					<!-- <h2 class="heading-section">Login #10</h2> -->
+					<img src="atrbpn.png"/ width="150px">
 				</div>
 			</div>
 			<div class="row justify-content-center">
@@ -62,7 +63,12 @@
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
-
+  <?php
+  session_start();
+  if ($_SESSION['user_id']) {
+		header("Location: app");
+	}
+  ?>
 	</body>
 </html>
 

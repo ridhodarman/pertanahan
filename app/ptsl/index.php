@@ -111,11 +111,9 @@
                 $data = mysqli_query($koneksi, "select id from berkas_ptsl");
                 $jumlah_data = mysqli_num_rows($data);
                 $total_halaman = ceil($jumlah_data / $batas);
-                $query = "SELECT B.id, B.nomor_berkas, B.nama_pemohon, B.desa_nagari, B.kecamatan, B.tahun 
-                					FROM berkas_ptsl AS B
-                					LEFT JOIN format_ptsl AS F ON B.id_format=F.id
-                          LEFT JOIN akun AS A ON F.akun_id=A.id
-                          WHERE F.akun_id = ?
+                $query = "SELECT id, nomor_berkas, nama_pemohon, desa_nagari, kecamatan, tahun 
+                					FROM berkas_ptsl
+                          WHERE akun_id = ?
                 					ORDER BY waktu_entri DESC limit ?, ?";
                 $sql = $koneksi->prepare($query);
                 $sql->bind_param("sss", $akun_id, $halaman_awal, $batas);

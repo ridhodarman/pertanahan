@@ -32,8 +32,11 @@
           <div class="col-lg-11">
             <div class="row justify-content-end">
               <?php
-                 include 'inc/koneksi.php';
-                  $berkas = mysqli_num_rows(mysqli_query($koneksi, "select id from berkas_pertek"));
+                $akun_id=$_SESSION['user_id'];
+                $berkas = mysqli_num_rows(mysqli_query($koneksi, "select id from berkas_pertek WHERE akun_id='$akun_id' AND no_berkas IS NOT NULL"));
+                $lapangan = mysqli_num_rows(mysqli_query($koneksi, "select id from berkas_pertek WHERE akun_id='$akun_id' AND no_stpl IS NOT NULL"));
+                $pengolahan = mysqli_num_rows(mysqli_query($koneksi, "select id from berkas_pertek WHERE akun_id='$akun_id' AND no_ba_pengolahan_data IS NOT NULL"));
+                $risalah = mysqli_num_rows(mysqli_query($koneksi, "select id from berkas_pertek WHERE akun_id='$akun_id' AND no_risalah IS NOT NULL"));
               ?>
               <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                 <div class="count-box py-5">
@@ -46,7 +49,7 @@
               <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                 <div class="count-box py-5">
                   <i class="bi bi-journal-richtext"></i>
-                  <span data-purecounter-start="0" data-purecounter-end="89" class="purecounter">0</span>
+                  <span data-purecounter-start="0" data-purecounter-end="<?php echo $lapangan; ?>" class="purecounter">0</span>
                   <p>Peninjauan Lapang</p>
                 </div>
               </div>
@@ -54,7 +57,7 @@
               <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                 <div class="count-box pb-5 pt-0 pt-lg-5">
                   <i class="bi bi-clock"></i>
-                  <span data-purecounter-start="0" data-purecounter-end="79" class="purecounter">0</span>
+                  <span data-purecounter-start="0" data-purecounter-end="<?php echo $pengolahan; ?>" class="purecounter">0</span>
                   <p>Pengolahan Data</p>
                 </div>
               </div>
@@ -62,7 +65,7 @@
               <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                 <div class="count-box pb-5 pt-0 pt-lg-5">
                   <i class="bi bi-award"></i>
-                  <span data-purecounter-start="0" data-purecounter-end="60" class="purecounter">0</span>
+                  <span data-purecounter-start="0" data-purecounter-end="<?php echo $risalah; ?>" class="purecounter">0</span>
                   <p>Risalah</p>
                 </div>
               </div>
@@ -86,7 +89,6 @@
               </thead>
               <tbody>
                 <?php
-                $akun_id=$_SESSION['user_id'];
                 $batas = 20;
                 $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
                 $halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
@@ -97,12 +99,10 @@
                 $data = mysqli_query($koneksi, "select id from berkas_pertek");
                 $jumlah_data = mysqli_num_rows($data);
                 $total_halaman = ceil($jumlah_data / $batas);
-                $query = "SELECT B.id, B.no_berkas, B.nama_pemohon, B.desa_nagari, B.kecamatan, B.tahun
-                          FROM berkas_pertek AS B
-                          LEFT JOIN format_pertek AS F ON B.id_format=F.id
-                          LEFT JOIN akun AS A ON F.akun_id=A.id
-                          WHERE F.akun_id = ?
-                          ORDER BY B.waktu_entri DESC limit ?, ?
+                $query = "SELECT id, no_berkas, nama_pemohon, desa_nagari, kecamatan, tahun
+                          FROM berkas_pertek
+                          WHERE akun_id = ?
+                          ORDER BY waktu_entri DESC limit ?, ?
                           ";
                 $sql = $koneksi->prepare($query);
                 $sql->bind_param("sss", $akun_id, $halaman_awal, $batas);
