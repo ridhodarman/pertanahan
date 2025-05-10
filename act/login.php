@@ -28,6 +28,7 @@ if ($user = $result->fetch_assoc()) {
     if ( md5($password) == $user['password'] ) {
         // Menetapkan session
         $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
         //header("Location: ../app");
         echo '<meta content="0; url=../app" http-equiv="refresh">';
         exit;

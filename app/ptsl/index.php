@@ -108,7 +108,7 @@
                 $previous = $halaman - 1;
                 $next = $halaman + 1;
 
-                $data = mysqli_query($koneksi, "select id from berkas_ptsl");
+                $data = mysqli_query($koneksi, "select id from berkas_ptsl WHERE akun_id = $akun_id");
                 $jumlah_data = mysqli_num_rows($data);
                 $total_halaman = ceil($jumlah_data / $batas);
                 $query = "SELECT id, nomor_berkas, nama_pemohon, desa_nagari, kecamatan, tahun 

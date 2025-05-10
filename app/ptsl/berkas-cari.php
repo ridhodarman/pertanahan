@@ -61,11 +61,9 @@
 
                 $cari2 = "%".strtolower($cari)."%";
 
-                $sql1 = "SELECT B.id, B.nomor_berkas, B.nama_pemohon, B.desa_nagari, B.kecamatan, B.tahun 
-                        FROM berkas_ptsl AS B
-                        LEFT JOIN format_ptsl AS F ON B.id_format=F.id
-                        LEFT JOIN akun AS A ON F.akun_id=A.id
-                        WHERE F.akun_id = ? AND
+                $sql1 = "SELECT id, nomor_berkas, nama_pemohon, desa_nagari, kecamatan, tahun 
+                        FROM berkas_ptsl
+                        WHERE akun_id = ? AND
                         ";
                 $sql2 = "";
                 $sql3 =" ORDER BY waktu_entri DESC limit ?, ?";

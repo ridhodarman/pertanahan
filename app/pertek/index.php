@@ -96,9 +96,10 @@
                 $previous = $halaman - 1;
                 $next = $halaman + 1;
 
-                $data = mysqli_query($koneksi, "select id from berkas_pertek");
+                $data = mysqli_query($koneksi, "select id from berkas_pertek WHERE akun_id = $akun_id");
                 $jumlah_data = mysqli_num_rows($data);
                 $total_halaman = ceil($jumlah_data / $batas);
+
                 $query = "SELECT id, no_berkas, nama_pemohon, desa_nagari, kecamatan, tahun
                           FROM berkas_pertek
                           WHERE akun_id = ?

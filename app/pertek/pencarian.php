@@ -53,12 +53,10 @@
                 //           ORDER BY waktu_entri DESC limit ?, ?";
                 // $sql = $koneksi->prepare($query);
                 // $sql->bind_param("sssss", $cari, $cari, $cari, $halaman_awal, $batas);
-                $query = "SELECT B.id, B.no_berkas, B.nama_pemohon, B.bertindak_atas_nama, B.desa_nagari, 
-                          B.kecamatan, B.luas, B.tahun
-                          FROM berkas_pertek AS B
-                          LEFT JOIN format_pertek AS F ON B.id_format=F.id
-                          LEFT JOIN akun AS A ON F.akun_id=A.id
-                          WHERE F.akun_id = ?
+                $query = "SELECT id, no_berkas, nama_pemohon, bertindak_atas_nama, desa_nagari, 
+                          kecamatan, luas, tahun
+                          FROM berkas_pertek
+                          WHERE akun_id = ?
                           AND (
                                LOWER(nama_pemohon) LIKE ? 
                             OR LOWER(bertindak_atas_nama) LIKE ? 
