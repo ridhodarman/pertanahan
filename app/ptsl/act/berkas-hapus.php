@@ -1,7 +1,7 @@
 <?php 
 // koneksi database
 if (isset($_GET['id'])) {
-	include '../inc/koneksi.php';
+	include '../../../inc/koneksi.php';
 	$berkas = $_GET['berkas'];
 	try {
 		$id = stripslashes(strip_tags(htmlspecialchars(base64_decode($_GET['id']), ENT_QUOTES)));

@@ -1,5 +1,5 @@
 <?php
-include '../../inc/koneksi.php';
+include '../../../../inc/koneksi.php';
 $id = stripslashes(strip_tags(htmlspecialchars(base64_decode($_POST['id']), ENT_QUOTES)));
 $no_sk = $_POST['no_sk'];
 $no_sk2 = preg_replace("/[^a-zA-Z0-9]/", "", $no_sk);

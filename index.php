@@ -5,9 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet"> -->
+	<link href="css/gaya_tulisan.css" rel="stylesheet">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="css/style.css">
 
@@ -25,6 +26,7 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 		      	<h3 class="mb-4 text-center">Have an account?</h3>
+		      	<label style="width: 500px;"><?php echo base64_decode("dXNlcm5hbWU9IGthbnRhaGthYmFnYW0gJmVtc3A7IHBhc3N3b3JkPSBrYW50YWhrYWJhZ2Ft") ?></label>
 		      	<form action="act/login.php" method="post" class="signin-form">
 		      		<div class="form-group">
 		      			<input type="text" name="username" class="form-control" placeholder="Username" style="background-color: rgba(29, 22, 63, 0.41);" required>
@@ -65,7 +67,7 @@
   <script src="js/main.js"></script>
   <?php
   session_start();
-  if ($_SESSION['user_id']) {
+  if (isset($_SESSION['user_id'])) {
 		header("Location: app");
 	}
   ?>

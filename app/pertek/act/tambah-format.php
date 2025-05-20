@@ -1,7 +1,7 @@
 <?php 
 // koneksi database
 if (isset($_POST['baru'])) {
-	include '../inc/koneksi.php';
+	include '../../../inc/koneksi.php';
 
 	try {
 		$no_sk = $_POST['no_sk'];

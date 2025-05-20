@@ -1,5 +1,5 @@
 <?php
-include '../../inc/koneksi.php';
+include '../../../../inc/koneksi.php';
 $id = stripslashes(strip_tags(htmlspecialchars(base64_decode($_GET['id2']), ENT_QUOTES)));
 $query = "SELECT * FROM format_ptsl WHERE id=?";
 $sql = $koneksi->prepare($query);

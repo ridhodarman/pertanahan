@@ -1,7 +1,7 @@
 <?php 
 // koneksi database
 if (isset($_POST['berkasbaru'])) {
-	include '../inc/koneksi.php';
+	include '../../../inc/koneksi.php';
 	session_start();
 
 	// try {

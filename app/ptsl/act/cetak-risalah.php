@@ -1,7 +1,7 @@
 <?php
 // membaca data dari form
 $id = stripslashes(strip_tags(htmlspecialchars(base64_decode($_GET['id']), ENT_QUOTES)));
-include '../inc/koneksi.php';
+include '../../../inc/koneksi.php';
 $query = "SELECT * FROM berkas_ptsl WHERE id=?";
 $sql = $koneksi->prepare($query);
 $sql->bind_param("i", $id);

@@ -1,5 +1,5 @@
 <?php
-include '../inc/koneksi.php';
+include '../../../inc/koneksi.php';
 try {
 	$id = stripslashes(strip_tags(htmlspecialchars(base64_decode($_POST['id']), ENT_QUOTES)));
 	$no_berkas = $_POST['no_berkas'];

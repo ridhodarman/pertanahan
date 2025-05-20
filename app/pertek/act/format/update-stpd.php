@@ -1,5 +1,5 @@
 <?php
-include '../../inc/koneksi.php';
+include '../../../../inc/koneksi.php';
 $id = stripslashes(strip_tags(htmlspecialchars(base64_decode($_POST['id']), ENT_QUOTES)));
 //$file_stpd = $_POST['file_stpd'];
 $no_sk = $_POST['no_sk'];
