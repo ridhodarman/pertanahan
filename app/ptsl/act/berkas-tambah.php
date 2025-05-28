@@ -1,6 +1,7 @@
 <?php 
 // koneksi database
 if (isset($_POST['berkasbaru'])) {
+	session_start();
 	include '../../../inc/koneksi.php';
 
 	// try {
@@ -29,7 +30,7 @@ if (isset($_POST['berkasbaru'])) {
 
 		$query = "insert into berkas_ptsl (nomor_berkas, tahun, nama_pemohon, nik, tanggal_lahir, pekerjaan, desa_nagari, alamat, tanggal_pbb, tanggal_surat_peng_fisik, nomor_surat_keterangan_wn, tanggal_surat_keterangan_wn, jenis_peristiwa, tanggal_peristiwa, nib, id_format, akun_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		$sql = $koneksi->prepare($query);
-		$sql->bind_param("iissssssssssssss", $nomor_berkas, $tahun, $nama_pemohon, $nik, $tanggal_lahir, $pekerjaan, $nagari, $jorong, $tanggal_pbb, $tanggal_surat_peng_fisik, $nomor_surat_keterangan_wn, $tanggal_surat_keterangan_wn, $jenis_peristiwa, $tanggal_peristiwa, $nib, $id_format, $akun_id);
+		$sql->bind_param("iissssssssssssssi", $nomor_berkas, $tahun, $nama_pemohon, $nik, $tanggal_lahir, $pekerjaan, $nagari, $jorong, $tanggal_pbb, $tanggal_surat_peng_fisik, $nomor_surat_keterangan_wn, $tanggal_surat_keterangan_wn, $jenis_peristiwa, $tanggal_peristiwa, $nib, $id_format, $akun_id);
 
 		if ($sql->execute()) {
 	    	//echo "<script>alert('Data Berhasil Disimpan');location='index.php';</script>";

@@ -9,12 +9,18 @@ if (isset($_POST['berkasbaru'])) {
 		$no_sk = $_POST['no_sk'];
 		$tanggal_sk = $_POST['tanggal_sk'];
 		$akun_id=$_SESSION['user_id'];
-		
+		$no_sk2 = preg_replace("/[^a-zA-Z0-9]/", "", $no_sk);
+		$file_sk = "";
 		$filename1 = $_FILES['file_sk']['name'];
-		$ekstensi1 =  array('pdf');
-		$ext1 = pathinfo($filename1, PATHINFO_EXTENSION);
-		if(!in_array($ext1,$ekstensi1) ) {
-			header("location:daftarformat.php?alert=Gagal input data, File SK harus dalam format pdf");
+		if ($filename1) {
+			$ekstensi1 =  array('pdf');
+			$ext1 = pathinfo($filename1, PATHINFO_EXTENSION);
+			if(!in_array($ext1,$ekstensi1) ) {
+				header("location:daftarformat.php?alert=Gagal input data, File SK harus dalam format pdf");
+			}
+			$rand = rand(10,999);
+			$file_sk = "_SK___".$no_sk2."___".$rand.'.pdf';
+			move_uploaded_file($_FILES['file_sk']['tmp_name'], '../format/'.$file_sk);
 		}
 
 		$filename2 = $_FILES['file_risalah']['name'];
@@ -24,14 +30,9 @@ if (isset($_POST['berkasbaru'])) {
 			header("location:daftarformat.php?alert=Gagal input data, File risalah harus dalam format rtf");
 		}
 
-		$no_sk2 = preg_replace("/[^a-zA-Z0-9]/", "", $no_sk);
-		$rand = rand(10,999);
-		$file_sk = "_SK___".$no_sk2."___".$rand.'.pdf';
-		move_uploaded_file($_FILES['file_sk']['tmp_name'], '../format/'.$file_sk);
-
 		$rand = rand(10,999);
 		$file_risalah = "_Risalah___".$no_sk2."___".$rand.'.rtf';
-		move_uploaded_file($_FILES['file_sk']['tmp_name'], '../format/'.$file_risalah);
+		move_uploaded_file($_FILES['file_risalah']['tmp_name'], '../format/'.$file_risalah);
 		
 		$query = "insert into format_ptsl (no_sk, tanggal_sk, file_sk, risalah, akun_id) VALUES (?, ?, ?, ?, ?)";
 		$sql = $koneksi->prepare($query);
@@ -39,7 +40,7 @@ if (isset($_POST['berkasbaru'])) {
 
 		if ($sql->execute()) {
 	    	//echo "<script>alert('Data Berhasil Disimpan');location='index.php';</script>";
-	    	header("location:../format.php?sukses=Format ".$no_sk." berhasil dibuat");
+	    	header("location:../format-daftar.php?sukses=Format ".$no_sk." berhasil dibuat");
 		}
 	// }
 	// catch (exception $e) {

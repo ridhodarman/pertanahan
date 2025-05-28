@@ -1,6 +1,7 @@
 <?php 
 // koneksi database
 if (isset($_POST['baru'])) {
+	session_start();
 	include '../../../inc/koneksi.php';
 
 	try {
@@ -22,7 +23,7 @@ if (isset($_POST['baru'])) {
 
 		$query = "insert into berkas_pertek (no_berkas, tahun, jenis_pertek, nama_pemohon, nik, alamat, bertindak_atas_nama, desa_nagari, kecamatan, id_format, akun_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		$sql = $koneksi->prepare($query);
-		$sql->bind_param("ssssssssss", $no_berkas, $tahun, $jenis_pertek, $nama_pemohon, $nik, $alamat, $bertindak_atas_nama, $nagari, $kecamatan, $id_format, $akun_id);
+		$sql->bind_param("ssssssssssi", $no_berkas, $tahun, $jenis_pertek, $nama_pemohon, $nik, $alamat, $bertindak_atas_nama, $nagari, $kecamatan, $id_format, $akun_id);
 
 		if ($sql->execute()) {
 	    	//echo "<script>alert('Data Berhasil Disimpan');location='index.php';</script>";

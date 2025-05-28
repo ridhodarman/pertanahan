@@ -19,6 +19,7 @@ $simpan = false;
 	$jenis_peristiwa = $_POST['jenis_peristiwa'];
 	$tanggal_peristiwa = $_POST['tanggal_peristiwa'];
 	$nib = $_POST['nib'];
+	$id_format = $_POST['id_format'];
 	// $kecamatan = $_POST['kecamatan'];
 
 	$query = "UPDATE berkas_ptsl SET 
@@ -36,11 +37,12 @@ $simpan = false;
 				tanggal_surat_keterangan_wn=?,
 				jenis_peristiwa=?,
 				tanggal_peristiwa=?,
-				nib=?
+				nib=?,
+				id_format=?
 			WHERE id=?";
 			$sql = $koneksi->prepare($query);
 			$sql->bind_param(
-				"sssssssssssssssi",
+				"sssssssssssssssii",
 				$nomor_berkas,
 				$tahun,
 				$nama_pemohon,
@@ -56,6 +58,7 @@ $simpan = false;
 				$jenis_peristiwa,
 				$tanggal_peristiwa,
 				$nib,
+				$id_format,
 				$id
 			);
 	if ($sql->execute()) {

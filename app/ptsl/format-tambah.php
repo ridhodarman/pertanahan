@@ -31,7 +31,7 @@
 						<div class="col-lg-4">
 							<div class="form-group">
 								<label style="color: black;">Nomor SK</label>
-								<input type="text" class="form-control" name="no_sk">
+								<input type="text" class="form-control" name="no_sk" required>
 							</div>
 						</div>
 						<div class="col-lg-4">
