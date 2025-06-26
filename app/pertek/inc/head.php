@@ -39,7 +39,7 @@
 <script src="assets/sweetalert2/src/sweetalert2@11"></script> -->
 
 <link href="assets/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/fontawesome-free-6.5.2-web/css/all.min.css" />
+<link rel="stylesheet" href="../../assets/fontawesome-free-6.5.2-web/css/all.min.css" />
 
 <?php
 session_start();

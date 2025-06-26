@@ -9,5 +9,9 @@
 <script src="../../assets/fontawesome-free-6.5.2-web/js/all.js" crossorigin="anonymous"></script>
 
 <?php
-        include '../../inc/koneksi.php';
+session_start();
+if ($_SESSION['administrator']!="administrator") {
+        header("Location: ../../403");
+}
+require_once('../../inc/koneksi.php');
 ?>

@@ -26,7 +26,7 @@
                                 DataTable Example
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
+                                <table id="example">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
@@ -526,7 +526,37 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <link href="https://cdn.datatables.net/v/dt/dt-2.3.2/datatables.min.css" rel="stylesheet" integrity="sha384-d76uxpdVr9QyCSR9vVSYdOAZeRzNUN8A4JVqUHBVXyGxZ+oOfrZVHC/1Y58mhyNg" crossorigin="anonymous">
+        <script src="https://cdn.datatables.net/v/dt/dt-2.3.2/datatables.min.js" integrity="sha384-JRUjeYWWUGO171YFugrU0ksSC6CaWnl4XzwP6mNjnnDh4hfFGRyYbEXwryGwLsEp" crossorigin="anonymous"></script>
     </body>
+    <script type="text/javascript">
+        $(document).ready(function() {
+  $('#example').DataTable({
+    "serverSide": true,
+    "ajax": {
+      "url": "/api/data", // Ganti dengan endpoint API Anda
+      "type": "POST",
+      "data": function ( d ) {
+        return $.extend( {}, d, {
+          "extra_search": $('#myInput').val() // contoh: data tambahan untuk pencarian
+        });
+      }
+    },
+    "columns": [
+      { "data": "name" },
+      { "data": "position" },
+      { "data": "office" },
+      { "data": "extn" },
+      { "data": "start_date" },
+      { "data": "salary" }
+    ],
+    "pageLength": 10 // Jumlah data per halaman
+  });
+
+  $('#myInput').on('keyup', function() {
+    $('#example').DataTable().ajax.reload(); // Reload data saat input pencarian berubah
+  });
+});
+    </script>
 </html>

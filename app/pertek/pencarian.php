@@ -41,7 +41,7 @@
                 $previous = $halaman - 1;
                 $next = $halaman + 1;
 
-                include 'inc/koneksi.php';
+                //include 'inc/koneksi.php';
 
                 //$data = mysqli_query($koneksi, "select id from berkas_pertek");
                 $jumlah_data = 0;
