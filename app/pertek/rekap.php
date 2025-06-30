@@ -112,10 +112,8 @@
                       <?php $tgl=strtotime($row['tanggal_st_pengolahan_data']); ?>
                       <td><?php echo date('d-m-Y', $tgl) ?></td>
                       <td>
-                        <a href="edit.php?berkas=<?php echo base64_encode($row['id']) ?>">
-                          <button type="button" class="btn btn-outline-warning btn-sm">Show</button>
+                        <a href="edit.php?berkas=<?php echo base64_encode($row['id']) ?>">Lihat</a>
                       </td>
-                      </a>
                     </tr>
                   <?php }
                 } else { ?>
